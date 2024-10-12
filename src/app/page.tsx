@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react"
+//import { useEffect, useState } from "react"
 import Image from "next/image"
 //import { ChevronLeft, ChevronRight, Globe, MessageSquare, Phone } from "lucide-react";
 
@@ -44,14 +44,7 @@ const buttons = [
 ]
 
 export default function AComponent() {
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % profiles.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-500 to-blue-600 text-white">
@@ -221,6 +214,4 @@ export default function AComponent() {
   )
 }
 
-function setActiveIndex(arg0: (current: any) => number) {
-  throw new Error("Function not implemented.")
-}
+
