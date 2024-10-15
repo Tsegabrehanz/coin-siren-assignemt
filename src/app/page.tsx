@@ -1,10 +1,12 @@
-'use client'
-//import { useEffect, useState } from "react"
-import Image from "next/image"
-//import { ChevronLeft, ChevronRight, Globe, MessageSquare, Phone } from "lucide-react";
 
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import { ArrowRight, ChevronLeft, ChevronRight, Code, Flag, Globe, MessageSquare, Phone, Settings, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import logo from "@/public/logo-hyperhire.png";
+import profile from "@/public/profileImage.jpg";
+
 import {
   Carousel,
   CarouselContent,
@@ -12,7 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { Globe, MessageSquare, Phone } from "lucide-react"
+import { EmblaOptionsType } from 'embla-carousel'
 
 const profiles = [
   {
@@ -20,20 +22,25 @@ const profiles = [
     role: "마케팅",
     experience: "2년",
     skills: ["마케팅 콘텐츠 제작", "인스타그램 관리", "트위터 관리", "블로그 글 작성"],
+    subtitle: "마케팅 · 2y+",
+    image: profile,
   },
   {
     name: "Sarah Johnson",
     role: "개발자",
     experience: "5년",
-    skills: ["React", "Node.js", "Python", "AWS"],
+    skills: ["React", "Node.js", "Python", "AWS"],subtitle: "마케팅 · 2y+",
+    image: profile,
   },
   {
     name: "Yuki Tanaka",
     role: "디자이너",
     experience: "3년",
-    skills: ["UI/UX 디자인", "Figma", "Adobe XD", "Illustration"],
+    skills: ["UI/UX 디자인", "Figma", "Adobe XD", "Illustration"],subtitle: "마케팅 · 2y+",
+    image: profile,
   },
 ]
+
 
 const buttons = [
   { icon: Globe, text: "해외 마케팅" },
@@ -41,21 +48,58 @@ const buttons = [
   { icon: Globe, text: "캐드원(제도사)" },
   { icon: Globe, text: "해외 세일즈" },
   { icon: Phone, text: "상담원" },
+  { icon: Globe, text: "해외 마케팅" },
+  { icon: MessageSquare, text: "퍼블리셔" },
+  { icon: Globe, text: "캐드원(제도사)" },
+  { icon: Globe, text: "해외 세일즈" },
+  { icon: Phone, text: "상담원" },
+  { icon: Globe, text: "해외 마케팅" },
+  { icon: MessageSquare, text: "퍼블리셔" },
+  { icon: Globe, text: "캐드원(제도사)" },
+  { icon: Globe, text: "해외 세일즈" },
+  { icon: Phone, text: "상담원" },
+]
+
+const cards = [
+  {
+    icon: <Code className="w-6 h-6 text-gray-600" />,
+    title: "해외 개발자 원격 채용",
+    link: "바로가기",
+  },
+  {
+    icon: <User className="w-6 h-6 text-gray-600" />,
+    title: "외국인 원격 채용 (비개발)",
+    link: "바로가기",
+  },
+  {
+    icon: (
+      <div className="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-xs font-semibold text-gray-600">
+        KOR
+      </div>
+    ),
+    title: "한국어 가능 외국인 채용",
+    link: "바로가기",
+  },
+  {
+    icon: <Settings className="w-6 h-6 text-gray-600" />,
+    title: "해외 개발자 활용 서비스",
+    link: "바로가기",
+  },
 ]
 
 export default function AComponent() {
-  
+  const OPTIONS: EmblaOptionsType = { loop: true }  
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-500 to-blue-600 text-white">
       <header className="p-4 flex justify-between items-center">
-        <Image src="/placeholder.svg" alt="hyperhire logo" width={120} height={40} />
+        <Image src={logo} alt="hyperhire logo" width={120} height={40} />
         <nav className="hidden md:flex items-center space-x-4">
           <select className="bg-transparent border-none text-white">
             <option>채용</option>
           </select>
           <span>해외 개발자 활용 서비스</span>
-          <Button variant="outline" className="text-white border-white hover:bg-white hover:text-teal-500">
+          <Button variant="outline" className="text-blue-500 border-white">
             문의하기
           </Button>
         </nav>
@@ -94,42 +138,53 @@ export default function AComponent() {
             </div>
           </div>
           <div className="relative w-full md:w-auto">
-            <div className="absolute -top-6 -left-6 bg-white text-teal-500 px-3 py-1 rounded-full text-sm font-bold z-10">
+            {/* <div className="absolute -top-6 -left-6 bg-white text-teal-500 px-3 py-1 rounded-full text-sm font-bold z-10">
               월 100만원
-            </div>
-            <Carousel className="w-full max-w-xs mx-auto">
-              <CarouselContent>
-                {profiles.map((profile, index) => (
-                  <CarouselItem key={index}>
-                    <Card className="w-64 bg-white/10 backdrop-blur-md">
-                      <CardContent className="p-4">
-                        <Image
-                          src="/placeholder.svg"
-                          alt={`${profile.name} profile picture`}
-                          width={100}
-                          height={100}
-                          className="rounded-full mx-auto mb-4"
-                        />
-                        <h3 className="text-xl font-bold text-center">{profile.name}</h3>
-                        <p className="text-center text-sm mb-2">{profile.role} • {profile.experience}</p>
-                        <div className="flex flex-wrap justify-center gap-2">
-                          {profile.skills.map((skill, skillIndex) => (
-                            <span key={skillIndex} className="bg-white/20 text-xs px-2 py-1 rounded-full">
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
+            </div> */}
+            <Carousel
+        opts={{
+          align: "center",
+          loop: true,
+        }}
+        className="w-full max-w-xs mx-auto"
+      >
+        <CarouselContent>
+          {profiles.map((profile, index) => (
+            <CarouselItem key={index} className="md:basis-4/5 lg:basis-3/4">
+              <Card className="bg-white rounded-2xl shadow-lg">
+                <CardContent className="flex flex-col items-center p-6">
+                  <div className="relative mb-4">
+                    <Image
+                      src={profile.image}
+                      alt={profile.name}
+                      className="w-24 h-24 rounded-full"
+                    />
+                    <Flag className="absolute bottom-0 right-0 w-6 h-6 text-yellow-400 stroke-2" />
+                  </div>
+                  <h2 className="text-2xl font-bold mb-1">{profile.name}</h2>
+                  <p className="text-blue-500 mb-4">{profile.subtitle}</p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {profile.skills.map((skill, skillIndex) => (
+                      <span
+                        key={skillIndex}
+                        className="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="text-black" />
+        <CarouselNext  className="text-black"/>
+      </Carousel>
           </div>
         </div>
-        <Carousel className="w-full max-w-xl mx-auto">
+       
+	      <Carousel className="w-full max-w-xl mx-auto">
           <CarouselContent>
             {buttons.map((button, index) => (
               <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5">
@@ -142,8 +197,8 @@ export default function AComponent() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="text-black"  />
+          <CarouselNext className="text-black"  />
         </Carousel>
       </main>
 
@@ -151,37 +206,32 @@ export default function AComponent() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-start">
             <div className="mb-8 md:mb-0">
-              <Image src="/placeholder.svg" alt="hyperhire logo" width={120} height={40} className="mb-4" />
+              <Image src={logo} alt="hyperhire logo" width={120} height={40} className="mb-4" />
               <p className="text-sm mb-2">우리는 국가와 장벽을 넘어 최고의 인재를 찾습니다.</p>
               <p className="text-sm">010-0000-0000</p>
               <p className="text-sm">aaaaa@naver.com</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div>
-                <h4 className="font-bold mb-2">해외 개발자 원격 채용</h4>
-                <Button variant="link" className="text-gray-600 p-0">
-                  바로가기
-                </Button>
-              </div>
-              <div>
-                <h4 className="font-bold mb-2">외국인 원격 채용 (비개발)</h4>
-                <Button variant="link" className="text-gray-600 p-0">
-                  바로가기
-                </Button>
-              </div>
-              <div>
-                <h4 className="font-bold mb-2">한국어 가능 외국인 채용</h4>
-                <Button variant="link" className="text-gray-600 p-0">
-                  바로가기
-                </Button>
-              </div>
-              <div>
-                <h4 className="font-bold mb-2">해외 개발자 활용 서비스</h4>
-                <Button variant="link" className="text-gray-600 p-0">
-                  바로가기
-                </Button>
-              </div>
-            </div>
+
+              <div className="flex flex-wrap justify-center gap-4 p-4">
+      {cards.map((card, index) => (
+        <div
+          key={index}
+          className="bg-gray-100 rounded-lg p-4 w-[calc(50%-0.5rem)] sm:w-[calc(25%-0.75rem)] flex flex-col items-start space-y-2"
+        >
+          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+            {card.icon}
+          </div>
+          <h3 className="text-sm font-medium text-gray-900 leading-tight min-h-[2.5rem]">
+            {card.title}
+          </h3>
+          <div className="flex items-center text-sm text-gray-600">
+            <span>{card.link}</span>
+            <ArrowRight className="w-4 h-4 ml-1" />
+          </div>
+        </div>
+      ))}
+    </div>
+
           </div>
           <div className="mt-8 pt-8 border-t border-gray-200 text-sm">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -213,5 +263,3 @@ export default function AComponent() {
     </div>
   )
 }
-
-
