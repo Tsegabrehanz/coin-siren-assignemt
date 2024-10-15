@@ -261,5 +261,6 @@ export default function AComponent() {
         </div>
       </footer>
     </div>
-  )
+  
+)
 }
