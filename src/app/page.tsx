@@ -1,7 +1,7 @@
 
-import { useEffect, useState } from "react"
+//import { useEffect, useState } from "react"
 import Image from "next/image"
-import { ArrowRight, ChevronLeft, ChevronRight, Code, Flag, Globe, MessageSquare, Phone, Settings, User } from "lucide-react"
+import { ArrowRight, Code, Flag, Globe, MessageSquare, Phone, Settings, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import logo from "@/public/logo-hyperhire.png";
@@ -14,7 +14,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { EmblaOptionsType } from 'embla-carousel'
 
 const profiles = [
   {
@@ -88,7 +87,7 @@ const cards = [
 ]
 
 export default function AComponent() {
-  const OPTIONS: EmblaOptionsType = { loop: true }  
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-500 to-blue-600 text-white">
